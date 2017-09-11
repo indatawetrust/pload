@@ -1,0 +1,24 @@
+node:
+  build: .
+  dockerfile: node.dockerfile
+  command: bash -c "npm i && npm start"
+  volumes:
+    - .:/api
+    - /api/node_modules
+    - ./upload:/api/upload
+  ports:
+    - "6009:6009"
+  links:
+    - mongo
+  container_name: pload_node
+mongo:
+  image: mongo:latest
+  container_name: pload_mongo
+nginx:
+  image: nginx
+  volumes:
+    - ./upload:/upload
+    - ./nginx.conf:/etc/nginx/nginx.conf
+  ports:
+    - "6010:80"
+  container_name: pload_nginx
