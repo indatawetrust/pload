@@ -1,4 +1,6 @@
 var router = require('koa-router')(),
+  fileMimeType = require('file-mt'),
+  fs = require('fs'),
   koaBody = require('koa-body')({
     multipart: true,
     formidable: {
@@ -8,9 +10,21 @@ var router = require('koa-router')(),
   });
 
 router.post('/', koaBody, async function(ctx, next) {
-  ctx.body = {
-    ok: ctx.request.body.files,
-  };
+  if (fileMimeType(ctx.request.body.files.file.path)) {
+    const { ext } = fileMimeType(ctx.request.body.files.file.path)
+
+    fs.renameSync(ctx.request.body.files.file.path, ctx.request.body.files.file.path.replace(/upload_/, '') + '.' + ext)
+
+    ctx.body = {
+      ok: true,
+      file: (ctx.request.body.files.file.path.replace(/upload_/, '') + '.' + ext).slice(4)
+    };
+  } else {
+    ctx.body = {
+      ok: true,
+      file: ctx.request.body.files.file.path.slice(4)
+    }; 
+  }
 });
 
 module.exports = router;
