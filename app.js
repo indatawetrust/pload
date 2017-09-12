@@ -8,6 +8,7 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
+const cors = require('kcors');
 
 const index = require('./routes/index');
 
@@ -15,7 +16,7 @@ const index = require('./routes/index');
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));
-
+app.use(cors())
 // logger
 app.use(async (ctx, next) => {
   const start = new Date();
