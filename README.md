@@ -8,7 +8,7 @@ docker-compose up -d
 
 #### usage
 ```sh
-curl -X POST -i -F image=@test.jpg http://localhost:6009/
+curl -X POST -i -F file=@test.jpg http://localhost:6009/
 ```
 ```js
 {
