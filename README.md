@@ -12,18 +12,11 @@ curl -X POST -i -F image=@atest.jpg http://localhost:6009/
 ```
 ```js
 {
-  "ok": {
-    "image": {
-      "size": 131560,
-      "path": "/api/upload/upload_ad98d7feb4d4097ccedfac866d24ac1e",
-      "name": "test.jpg",
-      "type": "image/jpeg",
-      "mtime": "2017-09-11T18:33:16.440Z"
-    }
-  }
+  "ok": true,
+  "file": "/upload/20b96e616a8f4e3114f03d14a510a2b6.jpg"
 }
 ```
 
 ```sh
-# http://localhost:6010/upload/upload_ad98d7feb4d4097ccedfac866d24ac1e
+# http://localhost:6010/upload/20b96e616a8f4e3114f03d14a510a2b6.jpg
 ```
