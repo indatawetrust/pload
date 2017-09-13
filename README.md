@@ -25,3 +25,5 @@ curl -X POST -i -F file=@test.jpg http://localhost:6009/
 - [ ] loading limit
 - [ ] statistics page
 - [ ] multiple file upload feature
+- [ ] ajax library
+- [ ] nodejs library
