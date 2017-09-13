@@ -23,7 +23,7 @@ curl -X POST -i -F file=@test.jpg http://localhost:6009/
 # http://localhost:6010/upload/c2add170d23ed351de6ddc289c4b2d40.zip
 ```
 
-- [ ] authorization support
+- [x] authorization support
 - [ ] loading limit
 - [ ] statistics page
 - [x] multiple file upload feature
