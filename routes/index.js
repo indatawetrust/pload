@@ -7,24 +7,36 @@ var router = require('koa-router')(),
       uploadDir: `${__dirname}/../upload`,
     },
     keepExtensions: true,
-  });
+  }),
+  prettyBytes = require('pretty-bytes');
 
 router.post('/', koaBody, async function(ctx, next) {
-  if (fileMimeType(ctx.request.body.files.file.path)) {
-    const { ext } = fileMimeType(ctx.request.body.files.file.path)
+  const {files} = ctx.request.body, _files = [];
 
-    fs.renameSync(ctx.request.body.files.file.path, ctx.request.body.files.file.path.replace(/upload_/, '') + '.' + ext)
+  for (let i in files) {
+    let {path, size} = files[i];
 
-    ctx.body = {
-      ok: true,
-      file: (ctx.request.body.files.file.path.replace(/upload_/, '') + '.' + ext).slice(4)
-    };
-  } else {
-    ctx.body = {
-      ok: true,
-      file: ctx.request.body.files.file.path.slice(4)
-    }; 
+    if (fileMimeType(path)) {
+      const {ext} = fileMimeType(path);
+
+      fs.renameSync(path, path.replace(/upload_/, '') + '.' + ext);
+
+      _files.push({
+        path: (path.replace(/upload_/, '') + '.' + ext).slice(4),
+        size: prettyBytes(size),
+      });
+    } else {
+      _files.push({
+        path: path.slice(4),
+        size: prettyBytes(size),
+      });
+    }
   }
+
+  ctx.body = {
+    ok: true,
+    files: _files,
+  };
 });
 
 module.exports = router;
