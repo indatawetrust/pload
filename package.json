@@ -11,6 +11,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "debug": "^2.2.0",
+    "dotenv": "^4.0.0",
     "file-mt": "0.0.1",
     "jade": "~1.11.0",
     "kcors": "^2.2.1",
