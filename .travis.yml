@@ -2,6 +2,7 @@ sudo: required
 
 before_script:
   - docker-compose up -d
+  - sleep 20
 
 language: node_js
 
