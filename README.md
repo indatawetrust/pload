@@ -1,3 +1,6 @@
+[![Travis Build
+Status](https://img.shields.io/travis/indatawetrust/pload.svg)](https://travis-ci.org/indatawetrust/pload)
+
 # pload
 A simple file upload service with fast setup
 
@@ -29,4 +32,4 @@ curl -X POST -i -F file=@test.jpg http://localhost:6009/
 - [x] multiple file upload feature
 - [ ] ajax library
 - [ ] nodejs library
-- [ ] test codes
+- [x] test codes
