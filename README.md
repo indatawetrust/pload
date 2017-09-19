@@ -28,6 +28,7 @@ curl -X POST -i -F file=@test.jpg http://localhost:6009/
 
 - [x] authorization support
 - [ ] loading limit
+- [ ] nginx reverse proxy
 - [ ] statistics page
 - [x] multiple file upload feature
 - [ ] ajax library
